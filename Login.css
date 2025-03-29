@@ -1,66 +1,60 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "General Sans"
-}
-html,body{
-    height: 100%;
-    width: 100%;
-    background-color: rgb(251, 250, 248);
-}
-nav{
-    height: 15vh;
-    width: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /*background-color: red;*/
-    
-}
-.nav1{
-    position: absolute;
-    height: 80%;
-    margin-left: 20px;
-}
-.nav1 img{
-    height: 100%;
-    width: 90%;
-}
-.nav2 {
-   display: flex;
-   gap: 20px;
-   /*background-color: yellow;*/
-    margin-left: 30%;
-    font-weight: 200;
-    font-size: small;
-}
-.nav2 h1:hover{
-    text-decoration: underline;
-    scale:  1px 1.1;
-}
-.nav3{
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    gap: 10px;
+header {
+  background-color: #fff;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
 }
 
-.nav3 button{
-    margin-right: 40px;
-    padding: 10px 20px;
-    border-radius: 10px;
-    background-color: transparent;
-    color: orange;
-    margin-bottom: 20px;
-    border: 1px solid orangered;
-    
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
 }
-.nav3 button:hover{
-    background-color: orangered;
-    color: white;
-    
+
+nav ul li a {
+  text-decoration: none;
+  color: #555;
+  margin-left: 25px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #e95420; 
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  position: relative; 
+}
+
+
+.search-icon {
+  font-size: 1.2em;
+  margin-right: 20px;
+  cursor: pointer;
+  color: #777;
+}
+
+.button {
+  background-color: #f9f1ec; 
+  color: #e95420;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid #e95420;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #e95420;
+  color: #fff;
 }
 
 .wrapper{
