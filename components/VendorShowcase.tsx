@@ -6,11 +6,11 @@ import { Star, MapPin, Clock, User } from 'lucide-react';
 const vendors = [
   {
     id: 1,
-    name: 'TechSolutions Bhiwandi',
+    name: 'TechSolutions',
     category: 'Electronics Repair',
     rating: 4.8,
     reviewCount: 124,
-    location: 'Bhiwandi, Central Market',
+    location: 'Local Market',
     image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3',
     yearsInBusiness: 8,
     specialty: 'Motherboard repairs, computer servicing',
@@ -22,7 +22,7 @@ const vendors = [
     category: 'Telecom Services',
     rating: 4.6,
     reviewCount: 89,
-    location: 'Bhiwandi, East Zone',
+    location: 'Local Market',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3',
     yearsInBusiness: 5,
     specialty: 'Mobile repairs, network installations',
@@ -34,7 +34,7 @@ const vendors = [
     category: 'Electronics Sales',
     rating: 4.9,
     reviewCount: 211,
-    location: 'Bhiwandi, Tech Market',
+    location: 'Local Market',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3',
     yearsInBusiness: 12,
     specialty: 'Premium smartphones, laptops, TVs',
@@ -54,7 +54,7 @@ const VendorShowcase = () => {
             Featured Local Vendors
           </h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Support your community by shopping from these trusted local businesses in Bhiwandi
+            Support your community by shopping from these trusted local businesses.
           </p>
         </div>
         
