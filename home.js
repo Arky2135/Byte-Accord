@@ -1,90 +1,179 @@
-// home.js
+document.addEventListener("DOMContentLoaded", () => {
+  const header = document.getElementById("main-header");
+  const backToTopButton = document.getElementById("back-to-top");
+  const mobileNav = document.querySelector(".main-nav");
+  const menuToggle = document.querySelector(".menu-toggle");
+  const searchPopup = document.querySelector(".search-popup");
+  const searchIconBtn = document.querySelector(".search-icon-btn");
+  const closeSearchBtn = document.querySelector(".close-search-btn");
 
-// Example 1: Basic Search Functionality (client-side, for demonstration)
-const searchInput = document.querySelector('.search-input input[type="text"]');
-const searchButton = document.querySelector(
-  '.search-input button[type="submit"]'
-);
-
-if (searchButton) {
-  searchButton.addEventListener("click", function () {
-    const searchTerm = searchInput.value.trim();
-    if (searchTerm) {
-      // In a real scenario, you'd send this to a server for processing.
-      // For now, let's just log it to the console.
-      console.log(`Search term: ${searchTerm}`);
-      // Here you would typically perform a search request,
-      // update the UI with search results, etc.
-      alert(`You searched for: ${searchTerm}`);
+  // --- Sticky Header ---
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+      if (backToTopButton) backToTopButton.classList.add("show");
     } else {
-      alert("Please enter a search term.");
+      header.classList.remove("scrolled");
+      if (backToTopButton) backToTopButton.classList.remove("show");
     }
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  // --- Back to Top Button ---
+  if (backToTopButton) {
+    backToTopButton.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  // --- Mobile Navigation Toggle ---
+  if (menuToggle && mobileNav) {
+    menuToggle.addEventListener("click", () => {
+      mobileNav.classList.toggle("active");
+      const isExpanded = mobileNav.classList.contains("active");
+      menuToggle.setAttribute("aria-expanded", isExpanded);
+      // Toggle icon (optional)
+      const icon = menuToggle.querySelector("i");
+      if (icon) {
+        icon.classList.toggle("fa-bars");
+        icon.classList.toggle("fa-times");
+      }
+    });
+
+    // Close mobile nav if clicking outside of it
+    document.addEventListener("click", (event) => {
+      if (
+        !mobileNav.contains(event.target) &&
+        !menuToggle.contains(event.target) &&
+        mobileNav.classList.contains("active")
+      ) {
+        mobileNav.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+        const icon = menuToggle.querySelector("i");
+        if (icon) {
+          icon.classList.remove("fa-times");
+          icon.classList.add("fa-bars");
+        }
+      }
+    });
+  }
+
+  // --- Search Popup Toggle ---
+  if (searchIconBtn && searchPopup && closeSearchBtn) {
+    searchIconBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      searchPopup.classList.add("active");
+      // Focus the input field when opening
+      const searchInput = searchPopup.querySelector('input[type="search"]');
+      if (searchInput) searchInput.focus();
+    });
+
+    closeSearchBtn.addEventListener("click", () => {
+      searchPopup.classList.remove("active");
+    });
+
+    // Close popup if clicking outside the form
+    searchPopup.addEventListener("click", (event) => {
+      if (event.target === searchPopup) {
+        // Check if the click is on the backdrop itself
+        searchPopup.classList.remove("active");
+      }
+    });
+  }
+
+  // --- Intersection Observer for Animations ---
+  const animatedElements = document.querySelectorAll(
+    ".step-item, .vendor-item, .product-item, .why-item, .testimonial-item, .category-item"
+  );
+
+  const observerCallback = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("fade-in", "visible");
+        observer.unobserve(entry.target); // Stop observing once visible
+      }
+    });
+  };
+
+  const observerOptions = {
+    root: null, // viewport
+    rootMargin: "0px",
+    threshold: 0.1, // Trigger when 10% is visible
+  };
+
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+  animatedElements.forEach((el) => {
+    observer.observe(el);
   });
-}
 
-// Example 2: Simple Category Link Alert
-const categoryLinks = document.querySelectorAll(".category-links a");
+  // --- Testimonial Slider (Basic Horizontal Scroll) ---
+  // More advanced sliders often use libraries (SwiperJS, Slick)
+  // This demonstrates basic scroll functionality if you add buttons
+  const slider = document.querySelector(".testimonial-slider");
+  // const prevButton = document.querySelector('.prev-slide'); // Add these buttons in HTML if needed
+  // const nextButton = document.querySelector('.next-slide');
 
-categoryLinks.forEach((link) => {
-  link.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent the link from navigating
-    const category = this.textContent;
-    // In a real scenario, you'd fetch and display products based on the category.
-    // For now, let's log the category to the console.
-    console.log(`Category clicked: ${category}`);
-    alert(`You clicked on the category: ${category}`);
-    // Here you would typically fetch and display products from this category.
+  // if (slider && prevButton && nextButton) {
+  //     const scrollAmount = () => {
+  //         // Calculate scroll amount based on item width
+  //         const firstItem = slider.querySelector('.testimonial-item');
+  //         return firstItem ? firstItem.offsetWidth + 30 : 300; // Item width + gap
+  //     }
+
+  //     nextButton.addEventListener('click', () => {
+  //         slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+  //     });
+
+  //     prevButton.addEventListener('click', () => {
+  //         slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+  //     });
+
+  //     // Optional: Disable buttons at ends
+  //     const checkScrollButtons = () => {
+  //         const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+  //         prevButton.disabled = slider.scrollLeft <= 0;
+  //         nextButton.disabled = slider.scrollLeft >= maxScrollLeft - 5; // Add tolerance
+  //     };
+  //     slider.addEventListener('scroll', checkScrollButtons);
+  //     window.addEventListener('resize', checkScrollButtons); // Recheck on resize
+  //     checkScrollButtons(); // Initial check
+  // }
+
+  // --- Update Footer Year ---
+  const currentYearSpan = document.getElementById("current-year");
+  if (currentYearSpan) {
+    currentYearSpan.textContent = new Date().getFullYear();
+  }
+
+  // --- Smooth Scrolling for Nav Links (if sections have IDs) ---
+  document.querySelectorAll('.main-nav a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const hrefAttribute = this.getAttribute("href");
+      // Ensure it's a valid selector and not just "#"
+      if (
+        hrefAttribute &&
+        hrefAttribute.length > 1 &&
+        document.querySelector(hrefAttribute)
+      ) {
+        e.preventDefault();
+        document.querySelector(hrefAttribute).scrollIntoView({
+          behavior: "smooth",
+        });
+        // Close mobile nav after clicking a link
+        if (mobileNav && mobileNav.classList.contains("active")) {
+          mobileNav.classList.remove("active");
+          menuToggle.setAttribute("aria-expanded", "false");
+          const icon = menuToggle.querySelector("i");
+          if (icon) {
+            icon.classList.remove("fa-times");
+            icon.classList.add("fa-bars");
+          }
+        }
+      }
+    });
   });
-});
 
-// More advanced features you could add with JavaScript:
-// - Dynamic loading of vendor or product data (fetching from a server).
-// - Filtering of content based on search terms or categories.
-// - Interactive elements like carousels or dropdown menus.
-// - User authentication (handling login functionality).
-// - Form submissions and data handling.
-// - Razorpay Integration
-
-console.log("home.js is loaded!");
-
-// Razorpay Integration
-const buyButtons = document.querySelectorAll(".buy-button");
-
-buyButtons.forEach((button) => {
-  button.addEventListener("click", function () {
-    const price = this.getAttribute("data-price");
-    const product = this.getAttribute("data-product");
-
-    // Razorpay options
-    const options = {
-      key: "YOUR_RAZORPAY_KEY_ID", // Replace with your actual Razorpay Key ID
-      amount: price * 100, // Amount in paise (e.g., 1000 paise = ₹10)
-      currency: "INR",
-      name: "SetuConnect",
-      description: `Payment for ${product}`,
-      image: "your-logo.png", // Replace with your logo URL
-      order_id: "", //Generated by backend
-      handler: function (response) {
-        alert(
-          `Payment successful for ${product}! Payment ID: ${response.razorpay_payment_id}`
-        );
-        // In a real scenario, you'd verify the payment on your server
-        console.log(response);
-      },
-      prefill: {
-        name: "Buyer Name",
-        email: "buyer@example.com",
-        contact: "9876543210",
-      },
-      notes: {
-        address: "Buyer Address",
-      },
-      theme: {
-        color: "#e95420",
-      },
-    };
-
-    const rzp = new Razorpay(options);
-    rzp.open();
-  });
-});
+  console.log("SetuConnect Home JS Initialized!");
+}); // End DOMContentLoaded
