@@ -1546,3 +1546,48 @@ ul {
     .footer-column h4::after { left: 50%; transform: translateX(-50%); }
     .contact-info ul li { justify-content: center; }
 }
+.buy-button {
+    position: relative; /* Needed for pseudo-element */
+    overflow: hidden; /* Hide pseudo-element overflow */
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease; /* Ensure smooth transitions */
+}
+
+.buy-button.added {
+    background-color: #28a745; /* Green for success */
+    border-color: #28a745;
+    color: white;
+}
+
+.buy-button.added i {
+    /* Optional: Change icon */
+    /* content: '\f00c'; /* Font Awesome checkmark */
+    /* font-family: "Font Awesome 5 Free"; */
+    /* font-weight: 900; */
+    display: none; /* Hide cart icon when added */
+}
+
+/* Optional: Add a text span for "Added" message inside the button via JS */
+.buy-button span.added-text {
+    display: inline-block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+/* --- Cart Icon Animation (Optional) --- */
+.cart-icon-link.updated {
+    animation: bounceCart 0.6s ease;
+}
+
+@keyframes bounceCart {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}

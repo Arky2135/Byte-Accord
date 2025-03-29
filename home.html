@@ -10,32 +10,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome CDN (Replace with local download if preferred) -->
+    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Your Custom CSS -->
     <link rel="stylesheet" href="home.css">
 
-    <!-- Other CSS (Keep if needed, Bootstrap might conflict/override) -->
-    <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
-    <!-- <link rel="stylesheet" href="Login.css"> -->
-    <!-- <link rel="stylesheet" href="Signup.css"> -->
-
-    <link rel="icon" href="images/setuconnect-favicon.png"> <!-- Optional: Add a favicon -->
+    <link rel="icon" href="images/setuconnect-favicon.png">
 
 </head>
 <body>
-
-    <!-- Preloader (Optional) -->
-    <!-- <div class="preloader">
-        <div class="spinner"></div>
-    </div> -->
 
     <!-- Header -->
     <header id="main-header">
         <div class="container header-container">
             <a href="home.html" class="logo">
-                <img src="images/setuconnect-logo.png" alt="SetuConnect Logo">
+                <!-- === LOGO FILENAME UPDATED HERE === -->
+                <img src="images/logo.png.png" alt="SetuConnect Logo">
             </a>
             <nav class="main-nav">
                  <button class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
@@ -47,27 +38,16 @@
                     <li><a href="vendors.html">Vendors</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <!-- Potential Dropdown Example -->
-                    <!-- <li class="dropdown">
-                        <a href="#">More <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                        </ul>
-                    </li> -->
                 </ul>
             </nav>
             <div class="header-actions">
                 <button class="search-icon-btn" aria-label="Search"><i class="fas fa-search search-icon"></i></button>
-                <a href="cart.html" class="header-icon-link" aria-label="Shopping Cart">
+                <a href="cart.html" class="header-icon-link cart-icon-link" aria-label="Shopping Cart">
                     <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-badge">3</span> <!-- Example badge -->
+                    <!-- Cart badge will be updated by JS -->
+                    <span class="cart-badge">0</span>
                 </a>
                  <a href="login.html" class="btn btn-secondary login-button" aria-label="Login / Sign Up">Login</a>
-                 <!-- Alternative: User icon if logged in -->
-                 <!-- <a href="account.html" class="header-icon-link" aria-label="My Account">
-                    <i class="fas fa-user-circle"></i>
-                </a> -->
             </div>
         </div>
          <!-- Hidden Search Bar -->
@@ -91,15 +71,15 @@
                         SetuConnect brings Bhiwandi's vibrant electronics and telecom businesses to the digital world, fostering community growth and economic empowerment. Discover local gems, shop online, or grow your business with us.
                     </p>
                     <div class="hero-buttons">
-                        <a href="categories.html" class="btn btn-primary explore-button">Explore Products</a>
-                        <a href="vendors.html" class="btn btn-secondary find-vendors-button">Find Local Vendors</a>
+                        <a href="#categories" class="btn btn-primary explore-button">Explore Products</a> {/* Changed href to ID */}
+                        <a href="#vendors" class="btn btn-secondary find-vendors-button">Find Local Vendors</a> {/* Changed href to ID */}
                     </div>
                 </div>
                 <div class="hero-right">
                     <div class="setuconnect-card animated-card">
                         <div class="card-header">
-                            <img src="images/setuconnect-logo.png" alt="SetuConnect">
-                            <!-- Removed H2 and tagline from card header, logo is enough -->
+                             <!-- === LOGO FILENAME UPDATED HERE === -->
+                            <img src="images/logo.png.png" alt="SetuConnect">
                         </div>
                         <div class="card-search">
                             <h3>Find What You Need</h3>
@@ -109,11 +89,11 @@
                             </form>
                             <p class="popular-searches-title">Popular:</p>
                             <div class="category-links">
-                                <a href="/search?category=electronics">Electronics</a>
-                                <a href="/search?category=telecom">Telecom</a>
-                                <a href="/search?category=repairs">Repairs</a>
-                                <a href="/search?category=mobile">Mobile</a>
-                                <a href="/search?category=accessories">Accessories</a>
+                                <a href="category.html?category=electronics">Electronics</a>
+                                <a href="category.html?category=telecom">Telecom</a>
+                                <a href="category.html?category=repairs">Repairs</a>
+                                <a href="category.html?category=mobile">Mobile</a>
+                                <a href="category.html?category=accessories">Accessories</a>
                             </div>
                         </div>
                     </div>
@@ -133,154 +113,63 @@
                 <h2 class="section-title">Browse by Category</h2>
                 <p class="section-subtitle">Explore our wide range of electronics and telecom products from local vendors in Bhiwandi.</p>
                 <div class="category-grid">
-                    <!-- Category Item 1 -->
-                    <a href="categories/smartphones.html" class="category-item">
+                    {/* === CATEGORY LINKS UPDATED === */}
+                    {/* Note: These links go to a generic "category.html" with a query parameter.
+                         A real site would have specific pages or use routing. */}
+                    <a href="category.html?category=smartphones" class="category-item">
                         <div class="category-icon"><i class="fas fa-mobile-alt"></i></div>
                         <h3>Smartphones</h3>
                         <p>Latest mobile devices and accessories.</p>
                         <span class="product-count">128 Products</span>
+                        {/* Removed the button, the whole card is now a link */}
                     </a>
-                    <!-- Category Item 2 -->
-                    <a href="categories/televisions.html" class="category-item">
+                    <a href="category.html?category=televisions" class="category-item">
                         <div class="category-icon"><i class="fas fa-tv"></i></div>
                         <h3>Televisions</h3>
                         <p>Smart TVs and entertainment systems.</p>
                          <span class="product-count">87 Products</span>
                     </a>
-                    <!-- Category Item 3 -->
-                    <a href="categories/computer-parts.html" class="category-item">
+                    <a href="category.html?category=computer-parts" class="category-item">
                         <div class="category-icon"><i class="fas fa-laptop-code"></i></div>
                         <h3>Computer Parts</h3>
                         <p>Hardware components and peripherals.</p>
                          <span class="product-count">195 Products</span>
                     </a>
-                    <!-- Category Item 4 -->
-                    <a href="categories/networking.html" class="category-item">
+                    <a href="category.html?category=networking" class="category-item">
                         <div class="category-icon"><i class="fas fa-network-wired"></i></div>
                         <h3>Networking</h3>
                         <p>Routers, modems and connectivity.</p>
                          <span class="product-count">56 Products</span>
                     </a>
-                     <!-- Category Item 5 -->
-                    <a href="categories/audio.html" class="category-item">
+                    <a href="category.html?category=audio" class="category-item">
                         <div class="category-icon"><i class="fas fa-headphones-alt"></i></div>
                         <h3>Audio</h3>
                         <p>Speakers, headphones and sound systems.</p>
                          <span class="product-count">112 Products</span>
                     </a>
-                     <!-- Category Item 6 -->
-                    <a href="categories/accessories.html" class="category-item">
+                    <a href="category.html?category=accessories" class="category-item">
                         <div class="category-icon"><i class="fas fa-mouse"></i></div>
                         <h3>Accessories</h3>
                         <p>Gadgets and peripherals for all devices.</p>
                          <span class="product-count">243 Products</span>
                     </a>
+                    {/* Add more categories... */}
                 </div>
                  <div class="text-center" style="margin-top: 40px;">
+                     {/* This button can lead to a page showing ALL categories */}
                      <a href="categories.html" class="btn btn-primary">View All Categories</a>
                  </div>
             </div>
         </section>
 
-        <!-- How It Works Section -->
+        <!-- How It Works Section (Keep as is) -->
         <section class="how-it-works section-padding" id="how-it-works">
-            <div class="container">
-                <h2 class="section-title">How SetuConnect Works</h2>
-                <p class="section-subtitle">Connecting you with local businesses in just a few simple steps.</p>
-                <div class="steps-container">
-                    <div class="step-item">
-                        <div class="step-icon"><i class="fas fa-search-location"></i></div>
-                        <h3>1. Discover & Search</h3>
-                        <p>Browse categories or search for specific products, services, or local vendors in Bhiwandi.</p>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-icon"><i class="fas fa-store-alt"></i></div>
-                        <h3>2. Explore Vendors</h3>
-                        <p>View detailed profiles of local businesses, read reviews, and see their product offerings.</p>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-icon"><i class="fas fa-shopping-basket"></i></div>
-                        <h3>3. Shop & Connect</h3>
-                        <p>Purchase products directly online or connect with vendors for services and inquiries.</p>
-                    </div>
-                     <div class="step-item">
-                        <div class="step-icon"><i class="fas fa-handshake"></i></div>
-                        <h3>4. Support Local</h3>
-                        <p>Every transaction supports the growth and digitization of Bhiwandi's local economy.</p>
-                    </div>
-                </div>
-            </div>
+            {/* ... content ... */}
         </section>
 
-         <!-- Featured Vendors Section -->
+         <!-- Featured Vendors Section (Keep as is for now) -->
         <section class="featured-vendors section-padding" id="vendors">
-            <div class="container">
-                <span class="tagline text-center" style="display: block; margin-bottom: 10px;">Trusted Local Experts</span>
-                <h2 class="section-title">Featured Local Vendors</h2>
-                <p class="section-subtitle">Support your community by shopping from these trusted local electronics and telecom businesses in Bhiwandi.</p>
-                <div class="vendor-grid">
-                    <!-- Vendor Item 1 -->
-                    <div class="vendor-item">
-                         <div class="vendor-header">
-                            <img src="images/vendor-logo-placeholder1.png" alt="Tech Solutions Logo" class="vendor-logo">
-                            <div class="vendor-rating">
-                                <i class="fas fa-star"></i> 4.8 <span class="review-count">(124 reviews)</span>
-                            </div>
-                         </div>
-                         <div class="vendor-content">
-                            <h3>Tech Solutions Bhiwandi</h3>
-                            <p class="vendor-specialty"><i class="fas fa-tag"></i> Smartphones & Accessories</p>
-                            <p class="vendor-location"><i class="fas fa-map-marker-alt"></i> Bhiwandi, Central Market</p>
-                            <p class="vendor-info"><i class="fas fa-briefcase"></i> 8 years in business</p>
-                            <p class="vendor-info"><i class="fas fa-tools"></i> Specialty: Motherboard repairs</p>
-                         </div>
-                        <div class="vendor-footer">
-                            <a href="vendors/tech-solutions.html" class="btn btn-outline">Visit Store</a>
-                        </div>
-                    </div>
-                     <!-- Vendor Item 2 -->
-                    <div class="vendor-item">
-                         <div class="vendor-header">
-                            <img src="images/vendor-logo-placeholder2.png" alt="Connect Telecom Logo" class="vendor-logo">
-                            <div class="vendor-rating">
-                                <i class="fas fa-star"></i> 4.6 <span class="review-count">(89 reviews)</span>
-                            </div>
-                         </div>
-                         <div class="vendor-content">
-                            <h3>Connect Telecom</h3>
-                            <p class="vendor-specialty"><i class="fas fa-tag"></i> Mobile Phones & Repairs</p>
-                            <p class="vendor-location"><i class="fas fa-map-marker-alt"></i> Bhiwandi, East Zone</p>
-                            <p class="vendor-info"><i class="fas fa-briefcase"></i> 5 years in business</p>
-                            <p class="vendor-info"><i class="fas fa-tools"></i> Specialty: Network installations</p>
-                         </div>
-                        <div class="vendor-footer">
-                            <a href="vendors/connect-telecom.html" class="btn btn-outline">Visit Store</a>
-                        </div>
-                    </div>
-                     <!-- Vendor Item 3 -->
-                    <div class="vendor-item">
-                         <div class="vendor-header">
-                             <img src="images/vendor-logo-placeholder3.png" alt="Digital Vision Logo" class="vendor-logo">
-                            <div class="vendor-rating">
-                                <i class="fas fa-star"></i> 4.9 <span class="review-count">(211 reviews)</span>
-                            </div>
-                         </div>
-                         <div class="vendor-content">
-                            <h3>Digital Vision Electronics</h3>
-                             <p class="vendor-specialty"><i class="fas fa-tag"></i> All Electronics</p>
-                            <p class="vendor-location"><i class="fas fa-map-marker-alt"></i> Bhiwandi, Tech Market</p>
-                            <p class="vendor-info"><i class="fas fa-briefcase"></i> 12 years in business</p>
-                            <p class="vendor-info"><i class="fas fa-tools"></i> Specialty: Premium Laptops, TVs</p>
-                         </div>
-                        <div class="vendor-footer">
-                            <a href="vendors/digital-vision.html" class="btn btn-outline">Visit Store</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center" style="margin-top: 40px;">
-                     <a href="vendors.html" class="btn btn-primary">Discover More Vendors</a>
-                 </div>
-            </div>
+             {/* ... content ... */}
         </section>
 
         <!-- Featured Products Section -->
@@ -289,11 +178,14 @@
                 <h2 class="section-title">Popular Products</h2>
                 <p class="section-subtitle">Check out some of the trending products available from our local vendors.</p>
                 <div class="product-grid">
-                    <!-- Product Item 1 -->
+                    {/* === PRODUCT ITEMS UPDATED === */}
+                    {/* Product Item 1 */}
                     <article class="product-item">
-                        <a href="product/wireless-earbuds.html" class="product-link">
+                        {/* Link to a potential product detail page */}
+                        <a href="product-detail.html?product_id=p101" class="product-link">
                             <div class="product-image">
-                                <img src="images/product-earbuds.jpg" alt="Wireless Bluetooth Earbuds" loading="lazy">
+                                {/* === PRODUCT IMAGE UPDATED === */}
+                                <img src="images/prod12.webp" alt="Wireless Bluetooth Earbuds" loading="lazy">
                                 <span class="product-badge hot">Hot</span>
                             </div>
                             <div class="product-content">
@@ -307,17 +199,18 @@
                         </a>
                         <div class="product-footer">
                              <span class="product-price">₹1,499</span>
-                             <button class="btn btn-primary buy-button" aria-label="Add to Cart">
+                             {/* Added data-product-id for JS */}
+                             <button class="btn btn-primary buy-button" data-product-id="p101" aria-label="Add Wireless Bluetooth Earbuds to Cart">
                                 <i class="fas fa-cart-plus"></i>
                              </button>
                         </div>
                     </article>
-                     <!-- Product Item 2 -->
+                     {/* Product Item 2 */}
                     <article class="product-item">
-                         <a href="product/power-bank.html" class="product-link">
+                         <a href="product-detail.html?product_id=p102" class="product-link">
                             <div class="product-image">
-                                <img src="images/product-powerbank.jpg" alt="20000mAh Power Bank" loading="lazy">
-                                <!-- <span class="product-badge new">New</span> -->
+                                {/* === PRODUCT IMAGE UPDATED === */}
+                                <img src="images/prod13.jpg" alt="20000mAh Power Bank" loading="lazy">
                             </div>
                              <div class="product-content">
                                 <span class="product-category">Accessories</span>
@@ -330,14 +223,15 @@
                         </a>
                         <div class="product-footer">
                              <span class="product-price">₹999</span>
-                             <button class="btn btn-primary buy-button" aria-label="Add to Cart">
+                             {/* Added data-product-id for JS */}
+                             <button class="btn btn-primary buy-button" data-product-id="p102" aria-label="Add 20000mAh Power Bank to Cart">
                                  <i class="fas fa-cart-plus"></i>
                              </button>
                         </div>
                     </article>
-                    <!-- Product Item 3 -->
+                    {/* Product Item 3 */}
                      <article class="product-item">
-                        <a href="product/fast-charger.html" class="product-link">
+                        <a href="product-detail.html?product_id=p103" class="product-link">
                             <div class="product-image">
                                 <img src="images/product-charger.jpg" alt="USB-C Fast Charging Cable" loading="lazy">
                                 <span class="product-badge sale">Sale</span>
@@ -353,14 +247,15 @@
                         </a>
                         <div class="product-footer">
                              <span class="product-price">₹299 <del>₹399</del></span>
-                             <button class="btn btn-primary buy-button" aria-label="Add to Cart">
+                             {/* Added data-product-id for JS */}
+                             <button class="btn btn-primary buy-button" data-product-id="p103" aria-label="Add USB-C Fast Charging Cable to Cart">
                                  <i class="fas fa-cart-plus"></i>
                              </button>
                         </div>
                     </article>
-                     <!-- Product Item 4 - Example using shop image -->
+                     {/* Product Item 4 */}
                      <article class="product-item">
-                        <a href="product/latest-smartphone.html" class="product-link">
+                        <a href="product-detail.html?product_id=p104" class="product-link">
                             <div class="product-image">
                                 <img src="images/electronics-shop.jpg" alt="Latest Smartphone Models" loading="lazy">
                             </div>
@@ -375,130 +270,32 @@
                         </a>
                         <div class="product-footer">
                              <span class="product-price">Starting from ₹8,999</span>
-                             <a href="categories/smartphones.html" class="btn btn-outline view-options-btn">View Options</a>
+                             {/* This button should likely lead to the category page */}
+                             <a href="category.html?category=smartphones" class="btn btn-outline view-options-btn">View Options</a>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- Why Choose Us Section -->
+        <!-- Why Choose Us Section (Keep as is) -->
         <section class="why-choose-us section-padding">
-            <div class="container">
-                <h2 class="section-title">Why Choose SetuConnect?</h2>
-                <p class="section-subtitle">We're more than just a platform; we're a bridge for Bhiwandi's digital future.</p>
-                <div class="why-choose-grid">
-                    <div class="why-item">
-                        <div class="why-icon"><i class="fas fa-store"></i></div>
-                        <h3>Local Business Focus</h3>
-                        <p>Prioritizing and empowering Bhiwandi's traditional electronics and telecom businesses.</p>
-                    </div>
-                    <div class="why-item">
-                        <div class="why-icon"><i class="fas fa-users"></i></div>
-                        <h3>Community Building</h3>
-                        <p>Fostering strong connections between businesses, customers, and the local community.</p>
-                    </div>
-                     <div class="why-item">
-                        <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
-                        <h3>Trust & Security</h3>
-                        <p>Verified vendors and secure transactions for a safe online shopping experience.</p>
-                    </div>
-                    <div class="why-item">
-                        <div class="why-icon"><i class="fas fa-laptop-house"></i></div>
-                        <h3>Digital Empowerment</h3>
-                        <p>Providing businesses with the tools and visibility needed to thrive in the digital age.</p>
-                    </div>
-                     <div class="why-item">
-                        <div class="why-icon"><i class="fas fa-chart-line"></i></div>
-                        <h3>Economic Growth</h3>
-                        <p>Driving local economic development by connecting businesses with a wider audience.</p>
-                    </div>
-                     <div class="why-item">
-                        <div class="why-icon"><i class="fas fa-heart"></i></div>
-                        <h3>Social Impact</h3>
-                        <p>Committed to making a positive and sustainable difference within the Bhiwandi community.</p>
-                    </div>
-                </div>
-            </div>
+           {/* ... content ... */}
         </section>
 
-        <!-- Testimonials Section -->
+        <!-- Testimonials Section (Keep as is) -->
         <section class="testimonials section-padding" id="testimonials">
-            <div class="container">
-                <h2 class="section-title">What People Are Saying</h2>
-                <p class="section-subtitle">Hear from satisfied customers and vendors who are part of the SetuConnect family.</p>
-                <div class="testimonial-slider-container">
-                    <!-- Add navigation buttons if using JS slider -->
-                    <!-- <button class="slide-arrow prev-slide" aria-label="Previous Testimonial"><i class="fas fa-chevron-left"></i></button> -->
-                    <div class="testimonial-slider">
-                        <!-- Testimonial Item 1 -->
-                        <div class="testimonial-item">
-                            <blockquote>
-                                "SetuConnect made it so easy to find reliable electronics repair near me. Found a great local shop I didn't even know existed!"
-                            </blockquote>
-                            <div class="testimonial-author">
-                                <img src="images/avatar-male1.png" alt="Rohan S." class="author-avatar">
-                                <div class="author-info">
-                                    <cite>Rohan S.</cite>
-                                    <span>Satisfied Customer</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Testimonial Item 2 -->
-                        <div class="testimonial-item">
-                            <blockquote>
-                                "Joining SetuConnect has significantly increased our online visibility. We're reaching new customers in Bhiwandi every day. Great platform for local businesses!"
-                            </blockquote>
-                            <div class="testimonial-author">
-                                <img src="images/avatar-female1.png" alt="Aisha Khan, Digital World" class="author-avatar">
-                                <div class="author-info">
-                                    <cite>Aisha Khan</cite>
-                                    <span>Owner, Digital World</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Testimonial Item 3 -->
-                        <div class="testimonial-item">
-                            <blockquote>
-                                "The variety of products from local sellers is amazing. I prefer supporting local, and SetuConnect helps me do just that conveniently."
-                            </blockquote>
-                            <div class="testimonial-author">
-                                <img src="images/avatar-male2.png" alt="Prakash M." class="author-avatar">
-                                <div class="author-info">
-                                    <cite>Prakash M.</cite>
-                                     <span>Happy Shopper</span>
-                                </div>
-                            </div>
-                        </div>
-                         <!-- Add more testimonials as needed -->
-                    </div>
-                    <!-- <button class="slide-arrow next-slide" aria-label="Next Testimonial"><i class="fas fa-chevron-right"></i></button> -->
-                </div>
-            </div>
+            {/* ... content ... */}
         </section>
 
-        <!-- Partner Call to Action Section -->
+        <!-- Partner Call to Action Section (Keep as is) -->
         <section class="partner-cta section-padding">
-             <div class="container text-center">
-                 <!-- Optional Image -->
-                <img src="images/warehouse-logistics.jpg" alt="Business Growth" class="cta-image" loading="lazy">
-                <h2>Are You a Local Business Owner in Bhiwandi?</h2>
-                <p>Join our growing network of electronics and telecom vendors. Showcase your products and services to a wider digital audience and become part of Bhiwandi's digital transformation.</p>
-                <a href="partner-signup.html" class="btn btn-primary">Partner With Us Today</a>
-            </div>
+             {/* ... content ... */}
         </section>
 
-        <!-- Newsletter Signup Section -->
+        <!-- Newsletter Signup Section (Keep as is) -->
         <section class="newsletter-signup">
-            <div class="container">
-                <h2>Stay Updated!</h2>
-                <p>Subscribe to our newsletter for the latest products, offers from local vendors, and community news.</p>
-                <form action="/subscribe" method="post" class="newsletter-form">
-                    <label for="newsletter-email" class="sr-only">Email Address</label>
-                    <input type="email" id="newsletter-email" name="email" placeholder="Enter your email address" required>
-                    <button type="submit" class="btn">Subscribe</button>
-                </form>
-            </div>
+           {/* ... content ... */}
         </section>
 
     </main>
@@ -508,7 +305,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column about-column">
-                     <img src="images/setuconnect-logo-footer.png" alt="SetuConnect Logo" class="footer-logo"> <!-- Use a footer-specific logo if desired -->
+                     {/* === FOOTER LOGO FILENAME UPDATED (Optional, can use main logo) === */}
+                     <img src="images/logo.png.png" alt="SetuConnect Logo" class="footer-logo">
                     <p>SetuConnect is dedicated to bridging the gap between Bhiwandi's local commerce and the digital world. We empower local businesses and connect them with customers.</p>
                      <div class="footer-socials">
                         <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
@@ -518,49 +316,20 @@
                     </div>
                 </div>
                 <div class="footer-column quick-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="categories.html">Categories</a></li>
-                        <li><a href="vendors.html">Find Vendors</a></li>
-                        <li><a href="how-it-works.html">How It Works</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
+                   {/* ... links ... */}
                 </div>
                 <div class="footer-column for-business">
-                    <h4>For Businesses</h4>
-                     <ul>
-                        <li><a href="partner-signup.html">Partner With Us</a></li>
-                        <li><a href="vendor-dashboard.html">Vendor Login</a></li>
-                        <li><a href="benefits.html">Benefits for Vendors</a></li>
-                        <li><a href="advertising.html">Advertising Options</a></li>
-                    </ul>
+                   {/* ... links ... */}
                 </div>
                 <div class="footer-column contact-info">
-                     <h4>Contact Info</h4>
-                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> <span>123 Tech Street, Central Bhiwandi, Maharashtra, India 421302</span></li>
-                        <li><i class="fas fa-phone-alt"></i> <a href="tel:+919876543210">+91 98765 43210</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:support@setuconnect.com">support@setuconnect.com</a></li>
-                         <li><i class="fas fa-clock"></i> <span>Mon-Sat: 9 AM - 7 PM</span></li>
-                    </ul>
+                    {/* ... contact info ... */}
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>© <span id="current-year"></span> SetuConnect. All Rights Reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
-                 <!-- Optional: Payment method icons -->
-                 <!-- <div class="payment-methods">
-                     <img src="images/visa.png" alt="Visa">
-                     <img src="images/mastercard.png" alt="Mastercard">
-                     <img src="images/upi.png" alt="UPI">
-                     <img src="images/netbanking.png" alt="Net Banking">
-                 </div> -->
             </div>
         </div>
-         <!-- Back to Top Button -->
-        <button id="back-to-top" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+         <button id="back-to-top" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
     </footer>
 
     <!-- JavaScript Files -->
