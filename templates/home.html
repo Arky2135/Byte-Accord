@@ -1,0 +1,457 @@
+{% extends 'base.html' %} {# Inherit structure from base.html #} {% block title
+%}{{ page_title | default('SetuConnect - Powering Local Commerce') }}{% endblock
+%} {% block content %} {# Define the main content block #}
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container hero-content">
+    <div class="hero-left">
+      <span class="tagline">Powering Local Commerce, Digitally</span>
+      <h1>
+        Connecting <span class="highlight">Local Businesses</span> With Digital
+        Customers
+      </h1>
+      <p class="description">
+        SetuConnect brings local electronics and telecom businesses to the
+        digital world, fostering community growth and economic empowerment.
+        Discover local gems, shop online, or grow your business with us.
+      </p>
+      <div class="hero-buttons">
+        {# Link to sections on the page using IDs #}
+        <a href="#categories" class="btn btn-primary explore-button"
+          >Explore Products</a
+        >
+        <a href="#vendors" class="btn btn-secondary find-vendors-button"
+          >Find Local Vendors</a
+        >
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="setuconnect-card animated-card">
+        <div class="card-header">
+          <img
+            src="{{ url_for('static', filename='images/logo.png.png') }}"
+            alt="SetuConnect"
+          />
+        </div>
+        <div class="card-search">
+          <h3>Find What You Need</h3>
+          <form action="/search" method="get" class="search-input">
+            {# Update action if needed #}
+            <input
+              type="text"
+              name="query"
+              placeholder="Search products, services..."
+              aria-label="Search Query"
+            />
+            <button type="submit" aria-label="Submit Search">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+          <p class="popular-searches-title">Popular:</p>
+          <div class="category-links">
+            {# Example links using url_for - adjust slugs as needed #}
+            <a href="{{ url_for('main.category_detail', slug='electronics') }}"
+              >Electronics</a
+            >
+            <a href="{{ url_for('main.category_detail', slug='telecom') }}"
+              >Telecom</a
+            >
+            <a href="{{ url_for('main.category_detail', slug='repairs') }}"
+              >Repairs</a
+            >
+            <a href="{{ url_for('main.category_detail', slug='mobile') }}"
+              >Mobile</a
+            >
+            <a href="{{ url_for('main.category_detail', slug='accessories') }}"
+              >Accessories</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wave-separator">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path
+        fill="#ffffff"
+        fill-opacity="1"
+        d="M0,192L48,176C96,160,192,128,288,133.3C384,139,480,181,576,186.7C672,192,768,160,864,144C960,128,1056,128,1152,149.3C1248,171,1344,213,1392,234.7L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+      ></path>
+    </svg>
+  </div>
+</section>
+
+<!-- Featured Categories Section -->
+<section class="featured-categories section-padding" id="categories">
+  <div class="container">
+    <h2 class="section-title">Browse by Category</h2>
+    <p class="section-subtitle">
+      Explore our wide range of electronics and telecom products from local
+      vendors.
+    </p>
+    <div class="category-grid">
+      {# Loop through categories passed from the route #} {% if categories %} {%
+      for cat in categories %}
+      <a
+        href="{{ url_for('main.category_detail', slug=cat.slug) }}"
+        class="category-item"
+      >
+        <div class="category-icon">
+          <i class="{{ cat.icon_class | default('fas fa-tag') }}"></i>
+        </div>
+        <h3>{{ cat.category_name }}</h3>
+        <p>
+          {{ cat.description | truncate(80) | default('View products in this
+          category.') }}
+        </p>
+        {# Fetch product count if needed (requires extra query or model
+        adjustment) #}
+        <span class="product-count">View Products</span>
+      </a>
+      {% endfor %} {% else %}
+      <p>No categories found.</p>
+      {% endif %}
+    </div>
+    <div class="text-center" style="margin-top: 40px">
+      <a href="#" class="btn btn-primary">View All Categories</a> {# Link to a
+      real 'all categories' page #}
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works section-padding" id="how-it-works">
+  <div class="container">
+    <h2 class="section-title">How SetuConnect Works</h2>
+    <p class="section-subtitle">
+      Connecting you with local businesses in just a few simple steps.
+    </p>
+    <div class="steps-container">
+      <div class="step-item">
+        <div class="step-icon"><i class="fas fa-search-location"></i></div>
+        <h3>1. Discover & Search</h3>
+        <p>
+          Browse categories or search for specific products, services, or local
+          vendors.
+        </p>
+      </div>
+      <div class="step-item">
+        <div class="step-icon"><i class="fas fa-store-alt"></i></div>
+        <h3>2. Explore Vendors</h3>
+        <p>
+          View detailed profiles of local businesses, read reviews, and see
+          their product offerings.
+        </p>
+      </div>
+      <div class="step-item">
+        <div class="step-icon"><i class="fas fa-shopping-basket"></i></div>
+        <h3>3. Shop & Connect</h3>
+        <p>
+          Purchase products directly online or connect with vendors for services
+          and inquiries.
+        </p>
+      </div>
+      <div class="step-item">
+        <div class="step-icon"><i class="fas fa-handshake"></i></div>
+        <h3>4. Support Local</h3>
+        <p>
+          Every transaction supports the growth and digitization of the local
+          economy.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Vendors Section -->
+<section class="featured-vendors section-padding" id="vendors">
+  <div class="container">
+    <span
+      class="tagline text-center"
+      style="display: block; margin-bottom: 10px"
+      >Trusted Local Experts</span
+    >
+    <h2 class="section-title">Featured Local Vendors</h2>
+    <p class="section-subtitle">
+      Support your community by shopping from these trusted local electronics
+      and telecom businesses.
+    </p>
+    <div class="vendor-grid">
+      {# Loop through vendors passed from the route #} {% if vendors %} {% for
+      vendor in vendors %}
+      <div class="vendor-item">
+        <div class="vendor-header">
+          <img
+            src="{{ url_for('static', filename=vendor.logo_image_url or 'images/vendor-logo-placeholder.png') }}"
+            alt="{{ vendor.vendor_name }} Logo"
+            class="vendor-logo"
+          />
+          <div class="vendor-rating">
+            <i class="fas fa-star"></i> {{ vendor.rating | default('N/A') }}
+            <span class="review-count"
+              >({{ vendor.review_count | default(0) }} reviews)</span
+            >
+          </div>
+        </div>
+        <div class="vendor-content">
+          <h3>{{ vendor.vendor_name }}</h3>
+          <p class="vendor-specialty">
+            <i class="fas fa-tag"></i> {{ vendor.specialty | default('Various
+            Electronics') }}
+          </p>
+          <p class="vendor-location">
+            <i class="fas fa-map-marker-alt"></i> {{ vendor.city |
+            default('Local Area') }}
+          </p>
+          {% if vendor.years_in_business %}
+          <p class="vendor-info">
+            <i class="fas fa-briefcase"></i> {{ vendor.years_in_business }}
+            years in business
+          </p>
+          {% endif %}
+        </div>
+        <div class="vendor-footer">
+          <a
+            href="{{ url_for('main.vendor_detail', slug=vendor.slug) }}"
+            class="btn btn-outline"
+            >Visit Store</a
+          >
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <p>No featured vendors found.</p>
+      {% endif %}
+    </div>
+    <div class="text-center" style="margin-top: 40px">
+      <a href="#" class="btn btn-primary">Discover More Vendors</a> {# Link to a
+      real 'all vendors' page #}
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="featured-products section-padding" id="products">
+  <div class="container">
+    <h2 class="section-title">Popular Products</h2>
+    <p class="section-subtitle">
+      Check out some of the trending products available from our local vendors.
+    </p>
+    <div class="product-grid">
+      {# Loop through products passed from the route #} {% if products %} {% for
+      product in products %}
+      <article class="product-item">
+        <a
+          href="{{ url_for('main.product_detail', slug=product.slug) }}"
+          class="product-link"
+        >
+          <div class="product-image">
+            <img
+              src="{{ url_for('static', filename=product.image_url_main or 'images/product-placeholder.png') }}"
+              alt="{{ product.product_name }}"
+              loading="lazy"
+            />
+            {# Add logic for badges if needed based on product properties #} {%
+            if loop.index == 1 %} <span class="product-badge hot">Hot</span> {%
+            endif %} {% if product.sale_price and product.sale_price <
+            product.price %} <span class="product-badge sale">Sale</span> {%
+            endif %}
+          </div>
+          <div class="product-content">
+            <span class="product-category"
+              >{{ product.category.category_name | default('General') }}</span
+            >
+            <h3>{{ product.product_name }}</h3>
+            <p class="product-vendor">
+              Vendor: {{ product.vendor.vendor_name | default('Unknown') }}
+            </p>
+            <div class="product-rating">
+              {# Basic rating display #} {% set rating_int = (product.rating or
+              0) | int %} {% for i in range(rating_int) %}<i
+                class="fas fa-star"
+              ></i
+              >{% endfor %}{% for i in range(5 - rating_int) %}<i
+                class="far fa-star"
+              ></i
+              >{% endfor %} ({{ product.rating | default(0) | round(1) }})
+            </div>
+          </div>
+        </a>
+        <div class="product-footer">
+          <span class="product-price">
+            {% if product.sale_price and product.sale_price < product.price %}
+            ₹{{ product.sale_price | round(2) }}
+            <del>₹{{ product.price | round(2) }}</del>
+            {% else %} ₹{{ product.price | round(2) }} {% endif %}
+          </span>
+          <button
+            class="btn btn-primary buy-button"
+            data-product-id="{{ product.product_id }}"
+            aria-label="Add {{ product.product_name }} to Cart"
+          >
+            <i class="fas fa-cart-plus"></i>
+          </button>
+        </div>
+      </article>
+      {% endfor %} {% else %}
+      <p>No featured products found.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-choose-us section-padding">
+  {# Static content - keep as is #}
+  <div class="container">
+    <h2 class="section-title">Why Choose SetuConnect?</h2>
+    <p class="section-subtitle">
+      We're more than just a platform; we're a bridge for digital commerce.
+    </p>
+    <div class="why-choose-grid">
+      <div class="why-item">
+        <div class="why-icon"><i class="fas fa-store"></i></div>
+        <h3>Local Business Focus</h3>
+        <p>
+          Prioritizing and empowering local electronics and telecom businesses.
+        </p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><i class="fas fa-users"></i></div>
+        <h3>Community Building</h3>
+        <p>Fostering strong connections between businesses and customers.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+        <h3>Trust & Security</h3>
+        <p>Verified vendors and aiming for secure transactions.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><i class="fas fa-laptop-house"></i></div>
+        <h3>Digital Empowerment</h3>
+        <p>Providing businesses the tools to thrive in the digital age.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Economic Growth</h3>
+        <p>
+          Driving local economic development by connecting businesses widely.
+        </p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><i class="fas fa-heart"></i></div>
+        <h3>Supporting Local</h3>
+        <p>Committed to making a positive impact on local economies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials section-padding" id="testimonials">
+  {# Static content - keep as is or load dynamically later #}
+  <div class="container">
+    <h2 class="section-title">What People Are Saying</h2>
+    <p class="section-subtitle">
+      Hear from satisfied customers and vendors who use platforms like ours.
+    </p>
+    <div class="testimonial-slider-container">
+      <div class="testimonial-slider">
+        <div class="testimonial-item">
+          <blockquote>
+            "This platform made it easy to find reliable local electronics
+            services I didn't know existed!"
+          </blockquote>
+          <div class="testimonial-author">
+            <img
+              src="{{ url_for('static', filename='images/avatar-male1.png') }}"
+              alt="Rohan S."
+              class="author-avatar"
+            />
+            <div class="author-info">
+              <cite>Rohan S.</cite> <span>Satisfied Customer</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-item">
+          <blockquote>
+            "Joining platforms like this increases our online visibility. We
+            reach new customers every day. Great for local businesses!"
+          </blockquote>
+          <div class="testimonial-author">
+            <img
+              src="{{ url_for('static', filename='images/avatar-female1.png') }}"
+              alt="Aisha Khan, Digital World"
+              class="author-avatar"
+            />
+            <div class="author-info">
+              <cite>Aisha Khan</cite> <span>Local Vendor</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-item">
+          <blockquote>
+            "The variety from local sellers is amazing. I prefer supporting
+            local, and this helps me do just that conveniently."
+          </blockquote>
+          <div class="testimonial-author">
+            <img
+              src="{{ url_for('static', filename='images/avatar-male2.png') }}"
+              alt="Prakash M."
+              class="author-avatar"
+            />
+            <div class="author-info">
+              <cite>Prakash M.</cite> <span>Happy Shopper</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Partner Call to Action Section -->
+<section class="partner-cta section-padding">
+  {# Static content - keep as is #}
+  <div class="container text-center">
+    <img
+      src="{{ url_for('static', filename='images/warehouse-logistics.jpg') }}"
+      alt="Business Growth"
+      class="cta-image"
+      loading="lazy"
+    />
+    <h2>Are You a Local Business Owner?</h2>
+    <p>
+      Join our growing network of electronics and telecom vendors. Showcase your
+      products and services to a wider digital audience and become part of the
+      digital transformation.
+    </p>
+    <a href="#" class="btn btn-primary">Partner With Us Today</a> {# Link to a
+    real partner signup page #}
+  </div>
+</section>
+
+<!-- Newsletter Signup Section -->
+<section class="newsletter-signup">
+  {# Static content - keep as is, needs backend handling #}
+  <div class="container">
+    <h2>Stay Updated!</h2>
+    <p>
+      Subscribe to our newsletter for the latest products, offers from local
+      vendors, and platform news.
+    </p>
+    <form action="/subscribe" method="post" class="newsletter-form">
+      <label for="newsletter-email" class="sr-only">Email Address</label>
+      <input
+        type="email"
+        id="newsletter-email"
+        name="email"
+        placeholder="Enter your email address"
+        required
+      />
+      <button type="submit" class="btn">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+{% endblock %} {# End of content block #}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Use dynamic page title or default -->
+    <title>{% block title %}{{ page_title | default('SetuConnect') }}{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Link to your CSS file using url_for -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+    <link rel="icon" href="{{ url_for('static', filename='images/setuconnect-favicon.png') }}">
+
+    {% block head_extra %}{% endblock %} <!-- Extra head content -->
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container header-container">
+            <!-- Use url_for for links -->
+            <a href="{{ url_for('main.home') }}" class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png.png') }}" alt="SetuConnect Logo">
+            </a>
+            <nav class="main-nav">
+                 <button class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul>
+                    <!-- Use url_for and check active page (example) -->
+                    <li><a href="{{ url_for('main.home') }}" class="{{ 'active' if request.endpoint == 'main.home' else '' }}">Home</a></li>
+                    <li><a href="{{ url_for('main.category_detail', slug='smartphones') }}" class="{{ 'active' if request.endpoint == 'main.category_detail' else '' }}">Categories</a></li> {# Example link #}
+                    <li><a href="{{ url_for('main.vendor_detail', slug='tech-solutions-bhiwandi') }}" class="{{ 'active' if request.endpoint == 'main.vendor_detail' else '' }}">Vendors</a></li> {# Example link #}
+                    <li><a href="{{ url_for('main.about') }}" class="{{ 'active' if request.endpoint == 'main.about' else '' }}">About</a></li>
+                    <li><a href="{{ url_for('main.contact') }}" class="{{ 'active' if request.endpoint == 'main.contact' else '' }}">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="search-icon-btn" aria-label="Search"><i class="fas fa-search search-icon"></i></button>
+                <a href="{{ url_for('main.view_cart') }}" class="header-icon-link cart-icon-link" aria-label="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    {# Cart badge needs JS update, start with 0 or fetch initial count #}
+                    <span class="cart-badge">0</span>
+                </a>
+                 <a href="{{ url_for('main.login') }}" class="btn btn-secondary login-button" aria-label="Login / Sign Up">Login</a>
+            </div>
+        </div>
+         <div class="search-popup">
+            <form action="/search" method="get"> {# Update action if needed #}
+                 <input type="search" name="query" placeholder="Search for products, services, vendors..." required>
+                 <button type="submit" class="btn btn-primary">Search</button>
+                 <button type="button" class="close-search-btn" aria-label="Close Search">×</button>
+            </form>
+        </div>
+    </header>
+
+    <main>
+        {# --- Flash Messages --- #}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="container flash-messages" style="padding-top: 15px;">
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category or 'info' }}" role="alert" style="background-color: #e0e0e0; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+                    {{ message }}
+                    <button type="button" class="close-flash" style="float: right; background: none; border: none; font-size: 1.2rem; cursor: pointer;" onclick="this.parentElement.style.display='none';">×</button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+
+        {# --- Main Content Block --- #}
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+       {# Add footer content here, using url_for for links and static assets #}
+       <div class="container">
+            <div class="footer-content">
+                 <div class="footer-column about-column">
+                     <img src="{{ url_for('static', filename='images/logo.png.png') }}" alt="SetuConnect Logo" class="footer-logo">
+                     <p>SetuConnect is dedicated to bridging the gap between local commerce and the digital world. We empower local businesses and connect them with customers.</p>
+                      <div class="footer-socials">
+                        <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                        {# Add other social links #}
+                    </div>
+                </div>
+                {# Add other footer columns #}
+                <div class="footer-column quick-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('main.about') }}">About Us</a></li>
+                        <li><a href="#">Categories</a></li> {# Add link #}
+                        <li><a href="#">Find Vendors</a></li> {# Add link #}
+                        <li><a href="#">How It Works</a></li> {# Add link #}
+                        <li><a href="{{ url_for('main.contact') }}">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="current-year"></span> SetuConnect. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+         <button id="back-to-top" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <!-- Link to your JS file using url_for -->
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+    {% block scripts_extra %}{% endblock %} <!-- Extra scripts -->
+
+</body>
+</html>
