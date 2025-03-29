@@ -1,0 +1,15 @@
+{
+  "name": "setuconnect",
+  "version": "1.0.0",
+  "description": "Empowering Local Businesses, Connecting Communities",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gaurav Balade, Chaitanya Bote, Archit Mankar, Kunal Das",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
